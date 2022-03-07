@@ -42,20 +42,15 @@ const batch = [
 
 // validating the card
 const validateCred = (array) => {
-  console.log(`hi i am ${array}`);
-
   let sumArray = [];
   let checkEvenOddIndex = (array.length - 1) % 2;
-  console.log(checkEvenOddIndex);
+
   for (let i = array.length - 1; i >= 0; i--) {
     // if index is even
     if (checkEvenOddIndex === 0) {
       if (i % 2 === 0) {
         sumArray.push(array[i]);
-        console.log("i am even index");
       } else {
-        console.log("i am odd index");
-
         let multipliedNumber = array[i] * 2;
         if (multipliedNumber > 9) {
           sumArray.push(multipliedNumber - 9);
@@ -78,14 +73,30 @@ const validateCred = (array) => {
       }
     }
   }
-  console.log(sumArray);
   //   checking the sum mudulo 10 is 0
   const theSum = sumArray.reduce((a, b) => a + b);
   if (theSum % 10 === 0) {
-    return "THe card is valid";
+    return true;
   } else {
-    return "invalid";
+    return false;
   }
 };
 
 console.log(validateCred(invalid1));
+
+let allInvalidCards = [];
+// finding invalid cards
+const findInvalidCards = (array) => {
+  //   console.log("this is entire array: " + array);
+  for (let i = 0; i < array.length; i++) {
+    // console.log("this is single Array: " + array[i]);
+    if (validateCred(array[i]) === false) {
+      allInvalidCards.push(array[i]);
+      console.log(`Card invalid new array:👇`);
+      console.log(array[i]);
+    }
+  }
+  return allInvalidCards;
+};
+findInvalidCards(batch);
+console.log(allInvalidCards);
