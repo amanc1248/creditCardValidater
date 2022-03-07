@@ -100,3 +100,30 @@ const findInvalidCards = (array) => {
 };
 findInvalidCards(batch);
 console.log(allInvalidCards);
+
+//checking all the invalid companies
+let companies = [];
+const idInvalidCardCompanies = (invalidCards) => {
+  for (let index = 0; index < invalidCards.length; index++) {
+    const element = invalidCards[index][0];
+    if (element === 3) {
+      if (!companies.includes("Amex (American Express)")) {
+        companies.push("Amex (American Express)");
+      }
+    } else if (element === 4) {
+      if (!companies.includes("Visa")) {
+        companies.push("Visa");
+      }
+    } else if (element === 5) {
+      if (!companies.includes("Mastercard")) {
+        companies.push("Mastercard");
+      }
+    } else {
+      if (!companies.includes("Discover")) {
+        companies.push("Discover");
+      }
+    }
+  }
+  return companies;
+};
+console.log(idInvalidCardCompanies(allInvalidCards));
